@@ -1,7 +1,7 @@
 # The Big Auto-ML Showdown
 
 Machine learning methods are often seen as black boxes which are difficult to understand.
-Automated machine learning frameworks tend to take these boxes, put them into a dark room, lock the door, and run away.
+Automated machine learning frameworks tend to take these boxes, put them into a dark room, lock the door, and run away (watch out for sarcasm!).
 So instead of improving interpretability directly, let's conduct a benchmark in a meaningful way in order to learn more about them.
 
 There have been some approaches in this direction already. See, e.g., the [AutoML Benchmark](https://openml.github.io/automlbenchmark/), the work of [STATWORX](https://www.statworx.com/at/blog/a-performance-benchmark-of-different-automl-frameworks/), and the benchmark accompanying the [Auto-Sklearn](https://arxiv.org/abs/2007.04074) publication.
