@@ -1,11 +1,12 @@
 import pandas as pd
 
+import joblib
 import sklearn.model_selection
 
 from tpot import TPOTClassifier
 
 
-def main(fname_data, fname_out):
+def main(fname_data, fname_pred, fname_model):
     # read data
     df_data = pd.read_csv(fname_data)
     X = df_data.filter(regex='^(?!target__)')
@@ -23,11 +24,16 @@ def main(fname_data, fname_out):
     y_hat = tpot.predict(X_test)
 
     # save result
+    joblib.dump(tpot.fitted_pipeline_, fname_model)
+
     pd.DataFrame({
         'y_test': y_test,
         'y_hat': y_hat
-    }).to_csv(fname_out, index=False)
+    }).to_csv(fname_pred, index=False)
 
 
 if __name__ == '__main__':
-    main(snakemake.input.fname, snakemake.output.fname)
+    main(
+        snakemake.input.fname,
+        snakemake.output.fname_pred, snakemake.output.fname_model
+    )
