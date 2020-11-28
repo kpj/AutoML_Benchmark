@@ -4,7 +4,8 @@ rule execute_model:
         fname_script = 'resources/models/{model}.py'
     output:
         fname_pred = 'results/predictions/{model}/{dataset}.csv',
-        fname_model = 'results/models/{model}__{dataset}.pkl'
+        fname_model = 'results/models/{model}__{dataset}.pkl',
+        fname_encoder = 'results/models/encoder_{model}__{dataset}.pkl'
     conda:
         '../envs/models.yaml'
     script:

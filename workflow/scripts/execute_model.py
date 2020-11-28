@@ -2,7 +2,6 @@ import sys
 import importlib.util
 
 import pandas as pd
-from pandas.api.types import is_numeric_dtype
 
 import joblib
 import category_encoders
@@ -20,20 +19,21 @@ def provide_module(path, module_name='model_impl'):
     return module
 
 
-def main(fname_dataset, fname_script, fname_pred, fname_model):
+def main(fname_dataset, fname_script, fname_pred, fname_model, fname_encoder):
     # read data
     df_data = pd.read_csv(fname_dataset)
+
+    # explicitly handle non-numerical features and NaN
+    df_data.fillna(-42, inplace=True)
+
+    enc = category_encoders.OrdinalEncoder()
+    df_data = enc.fit_transform(df_data)
+
+    # select covariates and response
     X = df_data.filter(regex='^(?!target__)').copy()
     y = df_data.filter(regex='^target__').squeeze().copy()
 
     assert len(y.shape) == 1  # there must be exactly one target variable
-
-    # explicitly handle non-numerical features and NaN
-    X.fillna(-1, inplace=True)
-    y.fillna(-1, inplace=True)
-
-    X = category_encoders.OrdinalEncoder().fit_transform(X)
-    y = category_encoders.OrdinalEncoder().fit_transform(y).squeeze()
 
     # split into train/test set
     X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(
@@ -47,9 +47,15 @@ def main(fname_dataset, fname_script, fname_pred, fname_model):
 
     # do predictions
     y_hat = model.predict(X_test)
+    y_hat = pd.Series(y_hat, index=y_test.index, name=y_test.name)
+
+    # undo encoding
+    y_test = enc.inverse_transform(pd.concat([X_test, y_test], axis=1))[y_test.name]
+    y_hat = enc.inverse_transform(pd.concat([X_test, y_hat], axis=1))[y_hat.name]
 
     # save result
     joblib.dump(model, fname_model)
+    joblib.dump(enc, fname_encoder)
 
     pd.DataFrame({
         'y_test': y_test,
@@ -62,5 +68,6 @@ if __name__ == '__main__':
         snakemake.input.fname_dataset,
         snakemake.input.fname_script,
         snakemake.output.fname_pred,
-        snakemake.output.fname_model
+        snakemake.output.fname_model,
+        snakemake.output.fname_encoder
     )
