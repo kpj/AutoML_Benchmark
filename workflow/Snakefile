@@ -12,8 +12,13 @@ include: 'rules/data_processing.smk'
 include: 'rules/models.smk'
 include: 'rules/performance.smk'
 
+
 rule all:
     input:
         expand('results/data_overview/{dataset}', dataset=dataset_list),
         'results/plots/performance_overview.pdf',
         'results/dashboard.py'
+
+
+onsuccess:
+    print('You can now execute "python results/dashboard.py" to explore the results.')
