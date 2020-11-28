@@ -43,6 +43,9 @@ rule create_dashboard:
         fname = 'results/performance/results.csv'
     output:
         marker = touch('results/plots/dashboard.stamp')
+    params:
+        model_list = model_list,
+        dataset_list = dataset_list
     log:
         notebook = 'results/log/create_dashboard.py.ipynb'
     notebook:
