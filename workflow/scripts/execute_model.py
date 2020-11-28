@@ -2,8 +2,10 @@ import sys
 import importlib.util
 
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
 
 import joblib
+import category_encoders
 import sklearn.model_selection
 
 
@@ -21,11 +23,19 @@ def provide_module(path, module_name='model_impl'):
 def main(fname_dataset, fname_script, fname_pred, fname_model):
     # read data
     df_data = pd.read_csv(fname_dataset)
-    X = df_data.filter(regex='^(?!target__)')
-    y = df_data.filter(regex='^target__').squeeze()
+    X = df_data.filter(regex='^(?!target__)').copy()
+    y = df_data.filter(regex='^target__').squeeze().copy()
 
     assert len(y.shape) == 1  # there must be exactly one target variable
 
+    # explicitly handle non-numerical features and NaN
+    X.fillna(-1, inplace=True)
+    y.fillna(-1, inplace=True)
+
+    X = category_encoders.OrdinalEncoder().fit_transform(X)
+    y = category_encoders.OrdinalEncoder().fit_transform(y).squeeze()
+
+    # split into train/test set
     X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(
         X, y,
         random_state=42
