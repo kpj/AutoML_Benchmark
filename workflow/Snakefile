@@ -1,0 +1,18 @@
+import os
+
+
+configfile: 'config/config.yaml'
+
+
+model_list = ['baseline']
+dataset_list = list(entry.name[:-4] for entry in os.scandir('resources'))
+
+
+include: 'rules/data_processing.smk'
+include: 'rules/models.smk'
+include: 'rules/performance.smk'
+
+rule all:
+    input:
+        'results/plots/performance_overview.pdf',
+        expand('results/data_overview/{dataset}', dataset=dataset_list)
