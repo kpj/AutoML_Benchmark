@@ -30,7 +30,7 @@ Finally, the results are displayed in an interactive dashboard which allows an i
 
 Execute the following command to run all models on all datasets:
 ```bash
-$ snakemake -j 1 -pr
+$ snakemake -j 1 -pr --use-conda
 ```
 
 Afterwards, execute `python results/dashboard.py` to enter an interactive dashboard for exploring the results.

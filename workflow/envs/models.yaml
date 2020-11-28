@@ -1,0 +1,21 @@
+channels:
+  - pytorch
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - xgboost
+
+  - pytorch
+  - torchvision
+  - torchaudio
+
+  - tpot
+  - xgboost
+  - dask
+  - dask-ml
+  - scikit-mdr
+  - skrebate
+
+  - pycaret
+  - shap

@@ -5,5 +5,7 @@ rule execute_model:
     output:
         fname_pred = 'results/predictions/{model}/{dataset}.csv',
         fname_model = 'results/models/{model}__{dataset}.pkl'
+    conda:
+        '../envs/models.yaml'
     script:
         '../scripts/execute_model.py'
