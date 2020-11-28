@@ -4,7 +4,7 @@ import os
 configfile: 'config/config.yaml'
 
 
-model_list = ['baseline']
+model_list = ['baseline', 'tpot']
 dataset_list = list(entry.name[:-4] for entry in os.scandir('resources'))
 
 
