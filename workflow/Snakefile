@@ -14,5 +14,6 @@ include: 'rules/performance.smk'
 
 rule all:
     input:
+        expand('results/data_overview/{dataset}', dataset=dataset_list),
         'results/plots/performance_overview.pdf',
-        expand('results/data_overview/{dataset}', dataset=dataset_list)
+        'results/dashboard.py'

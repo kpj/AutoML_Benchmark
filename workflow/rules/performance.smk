@@ -36,3 +36,32 @@ rule visualize_performance:
         notebook = 'results/log/performance_overview.py.ipynb'
     notebook:
         '../notebooks/performance_overview.py.ipynb'
+
+
+rule create_dashboard:
+    input:
+        fname = 'results/performance/results.csv'
+    output:
+        marker = touch('results/plots/dashboard.stamp')
+    log:
+        notebook = 'results/log/create_dashboard.py.ipynb'
+    notebook:
+        '../notebooks/create_dashboard.py.ipynb'
+
+
+rule convert_dashboard:
+    input:
+        marker = 'results/plots/dashboard.stamp'
+    output:
+        fname = 'results/dashboard.py'
+    params:
+        input_nb = rules.create_dashboard.log.notebook
+    run:
+        out_prefix = output.fname[:-3]
+        shell("""
+            jupyter nbconvert \
+                --to script \
+                --output-dir . \
+                --output {out_prefix} \
+                {params.input_nb}
+        """)

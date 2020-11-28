@@ -33,6 +33,8 @@ Execute the following command to run all models on all datasets:
 $ snakemake -j 1 -pr
 ```
 
+Afterwards, execute `python results/dashboard.py` to enter an interactive dashboard for exploring the results.
+
 ### Adding new datasets
 
 To add a new dataset, you simply need to add a single CSV file to `./resources`.
