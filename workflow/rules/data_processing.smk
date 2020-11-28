@@ -4,6 +4,6 @@ rule data_overview:
     output:
         dname = directory('results/data_overview/{dataset}')
     log:
-        'results/log/data_overview.{dataset}.py.ipynb'
+        notebook = 'results/log/data_overview.{dataset}.py.ipynb'
     notebook:
         '../notebooks/data_overview.py.ipynb'

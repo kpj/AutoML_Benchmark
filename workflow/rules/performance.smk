@@ -33,6 +33,6 @@ rule visualize_performance:
     output:
         fname = 'results/plots/performance_overview.pdf'
     log:
-        'results/log/performance_overview.py.ipynb'
+        notebook = 'results/log/performance_overview.py.ipynb'
     notebook:
         '../notebooks/performance_overview.py.ipynb'
