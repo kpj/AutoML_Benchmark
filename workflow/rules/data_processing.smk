@@ -1,6 +1,6 @@
 rule data_overview:
     input:
-        fname = 'resources/{dataset}.csv'
+        fname = 'resources/datasets/{dataset}.csv'
     output:
         dname = directory('results/data_overview/{dataset}')
     log:

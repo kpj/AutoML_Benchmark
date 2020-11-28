@@ -37,9 +37,9 @@ Afterwards, execute `python results/dashboard.py` to enter an interactive dashbo
 
 ### Adding new datasets
 
-To add a new dataset, you simply need to add a single CSV file to `./resources`.
+To add a new dataset, you simply need to add a single CSV file to `./resources/datasets/{dataset}.csv`.
 Each response variable/column needs to be prefixed with `target__` (and there has to be exactly one). All other columns are treated as covariates.
 
 ### Adding new models
 
-A new model can be added by implementing its accompanying rule in `workflow/rules/models.smk`.
+A new model can be added by implementing its training procedure and putting the script into `./resources/models/{model}.py`. Each script consists of a single `main` function which takes `X_train` and `y_train` as input.

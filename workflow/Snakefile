@@ -4,8 +4,8 @@ import os
 configfile: 'config/config.yaml'
 
 
-model_list = ['baseline', 'tpot']
-dataset_list = list(entry.name[:-4] for entry in os.scandir('resources'))
+model_list = glob_wildcards('resources/models/{model}.py').model
+dataset_list = glob_wildcards('resources/datasets/{dataset}.csv').dataset
 
 
 include: 'rules/data_processing.smk'

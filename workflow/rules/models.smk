@@ -1,18 +1,9 @@
-rule baseline:
+rule execute_model:
     input:
-        fname = 'resources/{dataset}.csv'
+        fname_dataset = 'resources/datasets/{dataset}.csv',
+        fname_script = 'resources/models/{model}.py'
     output:
-        fname_pred = 'results/predictions/baseline/{dataset}.csv',
-        fname_model = 'results/models/baseline__{dataset}.pkl'
+        fname_pred = 'results/predictions/{model}/{dataset}.csv',
+        fname_model = 'results/models/{model}__{dataset}.pkl'
     script:
-        '../scripts/baseline.py'
-
-
-rule tpot:
-    input:
-        fname = 'resources/{dataset}.csv'
-    output:
-        fname_pred = 'results/predictions/tpot/{dataset}.csv',
-        fname_model = 'results/models/tpot__{dataset}.pkl'
-    script:
-        '../scripts/tpot.py'
+        '../scripts/execute_model.py'
