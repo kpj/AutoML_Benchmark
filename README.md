@@ -14,7 +14,7 @@ There have been some approaches in this direction already. See, e.g., the [AutoM
 However, they are all lacking with regards to the underlying pipeline system using to setup the benchmark, as well as the exploration capabilities of the results.
 
 Here, we build a sustainable (i.e. reproducible, adaptable, and transparent) workflow to automatically benchmark a multitude of models against a diverse set of data.
-The models are existing auto-ML frameworks which each have their own advatanges and disdvantages related to ease-of-use, execution speed, and predictive performance. All of these features will become apparent in this benchmark.
+The models are existing auto-ML frameworks which each have their own advantages and disadvantages related to ease-of-use, execution speed, and predictive performance. All of these features will become apparent in this benchmark.
 The datasets try to be as representative as possible and cover a wide range of applications. They thus serve as a reasonable playground for the aforementioned models.
 Finally, the results are displayed in an interactive dashboard which allows an in-depth exploration of the generated performance evaluation.
 
