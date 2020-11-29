@@ -25,6 +25,9 @@ Finally, the results are displayed in an interactive dashboard which allows an i
 ### Datasets
 
 * `test_dataset`: just a dummy dataset to make sure everything works
+* `iris`: classic and very easy multi-class classification dataset
+* `titanic`: another classic survival dataset
+* `MAGIC Gamma Telescope`: [classification](https://archive.ics.uci.edu/ml/datasets/MAGIC+Gamma+Telescope) of high energy gamma particles
 
 ## Usage
 
