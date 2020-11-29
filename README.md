@@ -1,5 +1,11 @@
 # The Big Auto-ML Showdown
 
+
+Automated Pipeline                         |  Interactive Dashboard
+:-----------------------------------------:|:-------------------------:
+![Pipeline](gallery/pipeline.png)  |  ![Dashboard](gallery/dashboard.png)
+
+
 Machine learning methods are often seen as black boxes which are difficult to understand.
 Automated machine learning frameworks tend to take these boxes, put them into a dark room, lock the door, and run away (watch out for sarcasm!).
 So instead of improving interpretability directly, let's conduct a benchmark in a meaningful way in order to learn more about them.
