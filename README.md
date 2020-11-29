@@ -18,6 +18,7 @@ The models are existing auto-ML frameworks which each have their own advantages 
 The datasets try to be as representative as possible and cover a wide range of applications. They thus serve as a reasonable playground for the aforementioned models.
 Finally, the results are displayed in an interactive dashboard which allows an in-depth exploration of the generated performance evaluation.
 
+Check out the [screencast](https://www.youtube.com/watch?v=gecxYwFtX24) (for LauzHack2020).
 
 ## Resources
 
